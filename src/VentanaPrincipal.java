@@ -11,7 +11,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     
     private JLabel txtConvertir, txtA, txtIgual;
     private JTextField cajaUno, cajaDos;
-    private JComboBox<String> comboGrados;
+    private JComboBox<String> comboGrados, comboCen;
     
     public VentanaPrincipal() {
         getContentPane().setLayout(new FlowLayout());
@@ -40,6 +40,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         txtA.setText("A:");
         add(txtA);
         
+        comboCen = new JComboBox<String>();
+        comboCen.addItem("CELSIUS");
+        comboCen.addItem("FAHRENHEIT");
+        comboCen.addItem("KELVIN");
+        comboCen.addItem("RANKINE");
+        comboCen.addActionListener(this); // Agregar ActionListener para el segundo JComboBox
+        add(comboCen);
+        
         txtIgual = new JLabel();
         txtIgual.setText("=");
         add(txtIgual);
@@ -51,9 +59,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == comboGrados) { 
+        if (e.getSource() == comboGrados || e.getSource() == comboCen) { // Verificar el origen del evento
             String seleccion = (String) comboGrados.getSelectedItem(); 
             double valor = Double.parseDouble(cajaUno.getText()); 
+            
+            // Realizar la conversión basada en la selección en comboGrados y comboCen
+            if (e.getSource() == comboGrados) {
+                seleccion = (String) comboGrados.getSelectedItem();
+            } else if (e.getSource() == comboCen) {
+                seleccion = (String) comboCen.getSelectedItem();
+            }
             
             switch (seleccion) {
                 case "CELSIUS":
