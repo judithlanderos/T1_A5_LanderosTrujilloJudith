@@ -45,7 +45,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         comboCen.addItem("FAHRENHEIT");
         comboCen.addItem("KELVIN");
         comboCen.addItem("RANKINE");
-        comboCen.addActionListener(this); // Agregar ActionListener para el segundo JComboBox
+        comboCen.addActionListener(this); 
         add(comboCen);
         
         txtIgual = new JLabel();
@@ -59,11 +59,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == comboGrados || e.getSource() == comboCen) { // Verificar el origen del evento
+        if (e.getSource() == comboGrados || e.getSource() == comboCen) { 
             String seleccion = (String) comboGrados.getSelectedItem(); 
             double valor = Double.parseDouble(cajaUno.getText()); 
             
-            // Realizar la conversión basada en la selección en comboGrados y comboCen
             if (e.getSource() == comboGrados) {
                 seleccion = (String) comboGrados.getSelectedItem();
             } else if (e.getSource() == comboCen) {
